@@ -1,7 +1,7 @@
 /** @module url */ /** for typedoc */
 import {
   map, defaults, extend, inherit, identity,
-  unnest, tail, forEach, find, omit, pairs, allTrueR
+  unnest, tail, forEach, find, pairs, allTrueR
 } from "../common/common";
 import {prop, propEq } from "../common/hof";
 import {isArray, isString} from "../common/predicates";
@@ -10,10 +10,6 @@ import {isDefined} from "../common/predicates";
 import {DefType} from "../params/param";
 import {unnestR} from "../common/common";
 import {arrayTuples} from "../common/common";
-
-interface params {
-  $$validates: (params: string) => Array<string>;
-}
 
 function quoteRegExp(string: any, param?: any) {
   let surroundPattern = ['', ''], result = string.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");
@@ -146,7 +142,7 @@ export class UrlMatcher {
           pattern: new RegExp(regexp, this.config.caseInsensitive ? 'i' : undefined)
         })
       };
-    }
+    };
 
     let p, segment;
 
@@ -185,7 +181,7 @@ export class UrlMatcher {
     this._segments.push(segment);
 
     extend(this, {
-      _compiled: patterns.map(pattern => quoteRegExp.apply(null, pattern)).concat(quoteRegExp(segment)),
+      _compiled: patterns.map(_pattern => quoteRegExp.apply(null, _pattern)).concat(quoteRegExp(segment)),
       prefix: this._segments[0]
     });
 

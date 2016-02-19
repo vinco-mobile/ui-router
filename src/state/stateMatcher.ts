@@ -15,7 +15,7 @@ export class StateMatcher {
   find(stateOrName: StateOrName, base?: StateOrName): State {
     if (!stateOrName && stateOrName !== "") return undefined;
     let isStr = isString(stateOrName);
-    let name: string = isStr ? stateOrName : (<any>stateOrName).name;
+    let name: string = isStr ? <string> stateOrName : (<any>stateOrName).name;
 
     if (this.isRelative(name)) name = this.resolvePath(name, base);
     let state = this._states[name];

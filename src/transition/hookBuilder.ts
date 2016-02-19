@@ -1,6 +1,6 @@
 /** @module transition */ /** for typedoc */
 
-import {IInjectable, extend, tail, assertPredicate, unnestR, flatten, identity} from "../common/common";
+import {extend, tail, assertPredicate, unnestR, identity} from "../common/common";
 import {isArray} from "../common/predicates";
 
 import {TransitionOptions, TransitionHookOptions, IHookRegistry, TreeChanges, IEventHook, ITransitionService, IMatchingNodes} from "./interface";

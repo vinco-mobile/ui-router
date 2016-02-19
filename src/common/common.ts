@@ -1,7 +1,7 @@
 /** @module common */ /** for typedoc */
-
+/* tslint:disable:forin triple-equals */
 import {isFunction, isString, isArray, isRegExp, isDate} from "./predicates";
-import { all, pattern, any, not, prop, curry, val } from "./hof";
+import { all, any, not, prop, curry } from "./hof";
 
 let angular = (<any> window).angular || {};
 export const fromJson = angular.fromJson || _fromJson;

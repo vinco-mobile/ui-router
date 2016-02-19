@@ -17,7 +17,7 @@ describe('HookBuilder:', function() {
 
   let log = "";
   let hookNames = [ "onBefore", "onStart", "onExit", "onRetain", "onEnter", "onFinish", "onSuccess", "onError" ];
-  const hook = (name) => () => log += `${name};`;
+  const makeHook = (name) => () => log += `${name};`;
 
   beforeEach(() => {
     log = "";
@@ -61,8 +61,8 @@ describe('HookBuilder:', function() {
     trans2 = $trans.create(fromPath, $state.target("A", null));
     hb2 = trans2.hookBuilder();
 
-    callback = hook('hook');
-    expect(typeof callback).toBe('function')
+    callback = makeHook('hook');
+    expect(typeof callback).toBe('function');
   });
 
 
@@ -71,26 +71,27 @@ describe('HookBuilder:', function() {
     describe('.to', function() {
       it("should match a transition with same to state", function() {
         trans.onBefore({to: "A.B.C"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
 
       it("should not match a transition with a different to state", function() {
         trans.onBefore({to: "A.B"}, callback);
         trans.onBefore({to: "A.B.C.D"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
       });
 
       it("should match a transition using a glob", function() {
         trans.onBefore({to: "A.B.*"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
 
       it("should match a transition using a function", function() {
         let deregister = trans.onBefore({to: (state) => state.name === 'A.B'}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
+        deregister();
 
         trans.onBefore({to: (state) => state.name === 'A.B.C'}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
     });
 
@@ -98,20 +99,21 @@ describe('HookBuilder:', function() {
     describe('.from', function() {
       it("should match a transition with same from state", function() {
         trans.onBefore({from: "A"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
 
       it("should not match a transition with a different from state", function() {
         trans.onBefore({from: "A.B"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
       });
 
       it("should match a transition using a function", function() {
         let deregister = trans.onBefore({from: (state) => state.name === 'A.B'}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
+        deregister();
 
         trans.onBefore({from: (state) => state.name === 'A'}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
     });
 
@@ -119,12 +121,12 @@ describe('HookBuilder:', function() {
     describe('.to and .from', function() {
       it("should match a transition with same to and from state", function() {
         trans.onBefore({from: "A", to: "A.B.C"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
 
       it("should not match a transition with a different to or from state", function() {
         trans.onBefore({from: "A", to: "A.B.C.D"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
       });
     });
 
@@ -132,7 +134,7 @@ describe('HookBuilder:', function() {
     describe('.entering', function() {
       it("should match a transition that will enter the 'entering' state", function() {
         trans.onBefore({entering: "A.B.C"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
     });
 
@@ -140,12 +142,12 @@ describe('HookBuilder:', function() {
     describe('.retained', function() {
       it("should match a transition where the state is already entered, and will not exit", function() {
         trans.onBefore({retained: "A"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
 
       it("should not match a transition that will not retain the state", function() {
         trans.onBefore({retained: "A.B"}, callback);
-        expect(hb.getOnBeforeHooks().map(x => x.fn)).toEqual([]);
+        expect(hb.getOnBeforeHooks().map(x => x['fn'])).toEqual([]);
       });
     });
 
@@ -153,7 +155,7 @@ describe('HookBuilder:', function() {
     describe('.exiting', function() {
       it("should match a transition that will exit the 'exiting' state", function() {
         trans2.onBefore({exiting: "A.B.C"}, callback);
-        expect(hb2.getOnBeforeHooks().map(x => x.fn)).toEqual([callback]);
+        expect(hb2.getOnBeforeHooks().map(x => x['fn'])).toEqual([callback]);
       });
     });
   });
@@ -204,7 +206,7 @@ describe('HookBuilder:', function() {
       });
 
       it('; onError should be bound to the to state', function() {
-        trans.onStart({}, () => { throw new Error('shuckydarn') });
+        trans.onStart({}, () => { throw new Error('shuckydarn'); });
         trans.onError({}, callback);
         expect(hb.getOnErrorHooks().map(context)).toEqual(["A.B.C"]);
       });

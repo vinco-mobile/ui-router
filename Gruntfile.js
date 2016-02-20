@@ -21,8 +21,8 @@ module.exports = function (grunt) {
     },
     clean: [ '<%= builddir %>' ],
     ts: {
-      ng1: { tsconfig: 'tsconfig.json' },
-      ng2: { tsconfig: 'tsconfig-ng2.json' }
+      ng1: { tsconfig: 'tsconfig.json' }
+//  , ng2: { tsconfig: 'tsconfig-ng2.json' }
     },
     uglify: {
       options: {
@@ -31,9 +31,8 @@ module.exports = function (grunt) {
       },
       build: {
         files: {
-          '<%= builddir %>/ui-router-ng2.min.js': ['<banner:meta.banner>', '<%= builddir %>/ui-router-ng2.js'],
           '<%= builddir %>/<%= pkg.name %>.min.js': ['<banner:meta.banner>', '<%= builddir %>/<%= pkg.name %>.js'],
-          '<%= builddir %>/ng1/stateEvents.min.js': ['<banner:meta.banner>', '<%= builddir %>/ng1/stateEvents.js']
+          '<%= builddir %>/stateEvents.min.js': ['<banner:meta.banner>', '<%= builddir %>/ng1/src/stateEvents.js']
         }
       }
     },
@@ -58,35 +57,7 @@ module.exports = function (grunt) {
             }
           }
         ]
-      },
-      ng2: {
-        entry: files.ng2CommonJsEntrypoint,
-        output: {
-          path: '<%= builddir %>',
-          filename: 'ui-router-ng2.js',
-          library: 'uiRouter',
-          libraryTarget: 'umd'
-        },
-        module: {
-          loaders: []
-        },
-        externals: [{
-          'angular2/core': {root: ['ng', 'core'], commonjs: 'angular2/core', commonjs2: 'angular2/core', amd: 'angular2/core'},
-          'angular2/common': {root: ['ng', 'common'], commonjs: 'angular2/common', commonjs2: 'angular2/common', amd: 'angular2/common'}
-        }]
       }
-      //,core: {
-      //  entry: files.justjsCommonJsEntrypoint,
-      //  output: {
-      //    path: '<%= builddir %>',
-      //    filename: 'ui-router-justjs.js',
-      //    library: 'uiRouter',
-      //    libraryTarget: 'umd'
-      //  },
-      //  module: {
-      //    loaders: []
-      //  }
-      //}
     },
     release: {
       files: ['<%= pkg.name %>.js', '<%= pkg.name %>.min.js'],
@@ -190,7 +161,7 @@ module.exports = function (grunt) {
     grunt.task.run(['webpack']);
 
     ['stateEvents.js', 'stateEvents.js.map'].forEach(function(file) {
-      grunt.file.copy(builddir + "/es5/ng1/" + file, builddir + "/ng1/" + file);
+      grunt.file.copy(builddir + "/es5/src/ng1/" + file, builddir + "/ng1/" + file);
     })
   });
 

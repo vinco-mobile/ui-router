@@ -19,9 +19,9 @@
 
 /** for typedoc */
 import {IServiceProviderFactory} from "angular";
-import {StateService, StateProvider} from "../state/interface";
-import {TargetState} from "../state/module";
-import {Transition} from "../transition/transition";
+import {StateService, StateProvider} from "ui-router-core/src/state/interface";
+import {TargetState} from "ui-router-core/src/state/module";
+import {Transition} from "ui-router-core/src/transition/transition";
 
 /**
  * An event broadcast on `$rootScope` when the state transition **begins**.

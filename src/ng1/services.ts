@@ -13,16 +13,16 @@
 /// <reference path='../../typings/es6-shim/es6-shim.d.ts' />
 
 /** for typedoc */
-import {UIRouter} from "../router";
-import {services} from "../common/coreservices";
-import {map, bindFunctions, removeFrom, find, noop} from "../common/common";
-import {prop, propEq} from "../common/hof";
-import {isObject} from "../common/predicates";
-import {Node} from "../path/module";
-import {Resolvable, ResolveContext} from "../resolve/module";
-import {State} from "../state/module";
-import {trace} from "../common/trace";
-import {ViewConfig} from "../view/view";
+import {UIRouter} from "ui-router-core/src/router";
+import {services} from "ui-router-core/src/common/coreservices";
+import {map, bindFunctions, removeFrom, find, noop} from "ui-router-core/src/common/common";
+import {prop, propEq} from "ui-router-core/src/common/hof";
+import {isObject} from "ui-router-core/src/common/predicates";
+import {Node} from "ui-router-core/src/path/module";
+import {Resolvable, ResolveContext} from "ui-router-core/src/resolve/module";
+import {State} from "ui-router-core/src/state/module";
+import {trace} from "ui-router-core/src/common/trace";
+import {ViewConfig} from "ui-router-core/src/view/view";
 
 let app = angular.module("ui.router.angular1", []);
 

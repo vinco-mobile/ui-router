@@ -85,6 +85,7 @@
     "tslint": "=2.5.0",
     "typedoc": "git://github.com/christopherthielen/typedoc.git#v0.3-uirouter",
     "typescript": "=1.7.3",
+    "ui-router-core": "0.0.1",
     "webpack": "1.x",
     "webpack-dev-server": "1.x",
     "zone.js": "^0.5.10"

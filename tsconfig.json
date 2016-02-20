@@ -1,9 +1,9 @@
 {
+  "moduleResolution": "node",
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
-    "rootDir": "src",
     "target": "es5",
     "outDir": "build/es5",
     "declaration": true,

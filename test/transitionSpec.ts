@@ -1,15 +1,15 @@
-import {Node} from "../src/path/node";
+import {Node} from "ui-router-core/src/path/node";
 var module = angular.mock.module;
-import uiRouter from "../src/ui-router";
-import { RejectType } from "../src/transition/rejectFactory";
-import { extend, forEach, map, omit, pick, pluck } from "../src/common/common";
-import {PathFactory} from "../src/path/pathFactory";
-import {StateMatcher} from "../src/state/stateMatcher";
-import {StateBuilder} from "../src/state/stateBuilder";
-import {TargetState} from "../src/state/targetState";
-import {StateQueueManager} from "../src/state/stateQueueManager";
-import {TransitionRejection} from "../src/transition/rejectFactory";
-import {val} from "../src/common/hof";
+import {UIRouter} from "ui-router-core/src/ui-router";
+import { RejectType } from "ui-router-core/src/transition/rejectFactory";
+import { extend, forEach, map, omit, pick, pluck } from "ui-router-core/src/common/common";
+import {PathFactory} from "ui-router-core/src/path/pathFactory";
+import {StateMatcher} from "ui-router-core/src/state/stateMatcher";
+import {StateBuilder} from "ui-router-core/src/state/stateBuilder";
+import {TargetState} from "ui-router-core/src/state/targetState";
+import {StateQueueManager} from "ui-router-core/src/state/stateQueueManager";
+import {TransitionRejection} from "ui-router-core/src/transition/rejectFactory";
+import {val} from "ui-router-core/src/common/hof";
 
 describe('transition', function () {
 

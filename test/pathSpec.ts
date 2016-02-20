@@ -2,7 +2,7 @@
 /// <reference path='../typings/angularjs/angular-mocks.d.ts' />
 /// <reference path='../typings/jasmine/jasmine.d.ts' />
 
-import {PathFactory} from "../src/path/pathFactory"
+import {PathFactory} from "ui-router-core/src/path/pathFactory"
 
 xdescribe("", () => {
     describe("Path", () => {

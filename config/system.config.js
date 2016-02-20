@@ -1,5 +1,8 @@
 System.config({
     transpiler: 'typescript',
+    map: {
+        'ui-router-core': 'node_modules/ui-router-core'
+    },
     paths: {
         'babel': 'node_modules/babel-core/browser.js',
         'typescript': 'node_modules/typescript/lib/typescript.js',
@@ -7,11 +10,15 @@ System.config({
         'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',
         'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
         'phantomjs-polyfill': 'node_modules/phantomjs-polyfill/bind-polyfill.js',
+        'ui-router-core': 'node_modules/ui-router-core/foo',
         'angular-ui-router': 'src/ng1.ts'
     },
     packages: {
         'build/es6': {
             defaultExtension: 'js'
+        },
+        'node_modules/ui-router-core': {
+            defaultExtension: 'ts'
         },
         'src': {
             defaultExtension: 'ts'

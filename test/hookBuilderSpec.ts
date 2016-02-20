@@ -1,13 +1,13 @@
-import {UIRouter} from "../src/ui-router";
-import {TransitionService} from "../src/transition/transitionService";
+import {UIRouter} from "ui-router-core/src/ui-router";
+import {TransitionService} from "ui-router-core/src/transition/transitionService";
 import {tree2Array} from "./stateHelper.ts";
-import {StateService} from "../src/state/stateService";
+import {StateService} from "ui-router-core/src/state/stateService";
 
-import "../src/justjs";
-import {State} from "../src/state/stateObject";
-import {Node} from "../src/path/node";
-import {tail} from "../src/common/common";
-import {PathFactory} from "../src/path/pathFactory";
+import "ui-router-core/src/justjs";
+import {State} from "ui-router-core/src/state/stateObject";
+import {Node} from "ui-router-core/src/path/node";
+import {tail} from "ui-router-core/src/common/common";
+import {PathFactory} from "ui-router-core/src/path/pathFactory";
 
 describe('HookBuilder:', function() {
   let uiRouter: UIRouter = null;

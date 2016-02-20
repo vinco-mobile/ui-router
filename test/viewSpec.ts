@@ -4,15 +4,15 @@
 
 var module = angular.mock.module;
 
-import {inherit, extend} from "../src/common/common";
-import {curry} from "../src/common/hof";
-import {Node} from "../src/path/module";
-import {ResolveContext} from "../src/resolve/module";
-import {PathFactory} from "../src/path/module";
-import {ViewConfig} from "../src/view/module";
-import {StateMatcher, StateBuilder} from "../src/state/module";
+import {inherit, extend} from "ui-router-core/src/common/common";
+import {curry} from "ui-router-core/src/common/hof";
+import {Node} from "ui-router-core/src/path/module";
+import {ResolveContext} from "ui-router-core/src/resolve/module";
+import {PathFactory} from "ui-router-core/src/path/module";
+import {ViewConfig} from "ui-router-core/src/view/module";
+import {StateMatcher, StateBuilder} from "ui-router-core/src/state/module";
 
-import {State} from "../src/state/module";
+import {State} from "ui-router-core/src/state/module";
 
 describe('view', function() {
   var scope, $compile, $injector, elem, $controllerProvider, $urlMatcherFactoryProvider;

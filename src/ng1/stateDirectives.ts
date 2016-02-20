@@ -1,8 +1,8 @@
 /** @module state */ /** for typedoc */
 /// <reference path='../../typings/angularjs/angular.d.ts' />
-import {extend, copy, defaults, forEach, toJson} from "../common/common";
-import {isString, isObject} from "../common/predicates";
-import {defaultTransOpts} from "../transition/module";
+import {extend, copy, defaults, forEach, toJson} from "ui-router-core/src/common/common";
+import {isString, isObject} from "ui-router-core/src/common/predicates";
+import {defaultTransOpts} from "ui-router-core/src/transition/module";
 
 function parseStateRef(ref, current) {
   let preparsed = ref.match(/^\s*({[^}]*})\s*$/), parsed;

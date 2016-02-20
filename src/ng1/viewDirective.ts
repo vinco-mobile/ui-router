@@ -1,11 +1,11 @@
 var ngMajorVer = angular.version.major;
 var ngMinorVer = angular.version.minor;
 /** @module view */ /** for typedoc */
-import {extend} from "../common/common";
-import {isDefined} from "../common/predicates";
-import {trace} from "../common/trace";
-import {ViewConfig} from "../view/view";
-import {UIViewData} from "../view/interface";
+import {extend} from "ui-router-core/src/common/common";
+import {isDefined} from "ui-router-core/src/common/predicates";
+import {trace} from "ui-router-core/src/common/trace";
+import {ViewConfig} from "ui-router-core/src/view/view";
+import {UIViewData} from "ui-router-core/src/view/interface";
 
 /**
  * @ngdoc directive

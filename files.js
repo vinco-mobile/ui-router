@@ -1,7 +1,7 @@
 routerFiles = {
-  ng1CommonJsEntrypoint: ['./build/es5/src/ng1.js'],
-  ng2CommonJsEntrypoint: ['./build/es5/ng2.js'],
-  justjsCommonJsEntrypoint: ['./build/es5/justjs.js'],
+  ng1CommonJsEntrypoint: ['./build/src/ng1.js'],
+  ng2CommonJsEntrypoint: ['./build/ng2.js'],
+  justjsCommonJsEntrypoint: ['./build/justjs.js'],
   // es6Entrypoint:      ['./build/es6/ng1.js'],
 
   src:                [

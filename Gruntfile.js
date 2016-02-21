@@ -150,9 +150,22 @@ module.exports = function (grunt) {
   grunt.registerTask('sample', 'Run connect server with keepalive:true for sample app development', ['connect:sample']);
 
   grunt.registerTask('docs', 'Generate documentation to _doc', function() { 
-    promising(this, 
-      system('./node_modules/typedoc/bin/typedoc --readme ./README.md --name "UI-Router" --theme ./typedoctheme --mode modules --module commonjs --target es5 --out _doc  src/params src/path src/resolve src/state src/transition src/url src/view src/ng1')
-    );
+    var docgenprep = ' rm -rf build/docgen_src && ' + 
+                 ' mkdir -p build/docgen_src && ' +
+                 ' cp -R typings build && ' +
+                 ' cp -R src/* build/docgen_src && ' +
+                 ' cp -R node_modules/ui-router-core/src/* build/docgen_src';
+
+    var docgen = './node_modules/typedoc/bin/typedoc ' + 
+                 ' --readme ./README.md --name "UI-Router" ' + 
+                 ' --theme ./typedoctheme ' + 
+                 ' --mode modules ' + 
+                 ' --module commonjs ' + 
+                 ' --target es5 ' +
+                 ' --out build/docs ' +
+                 ' --experimentalDecorators ' +
+                 ' build/docgen_src';
+    promising(this, system(docgenprep).then(function() { return system(docgen) }));
   });
 
   grunt.registerTask('bundles', 'Create the bundles and reorganize any additional dist files (addons, etc)', function() {
@@ -161,7 +174,7 @@ module.exports = function (grunt) {
     grunt.task.run(['webpack']);
 
     ['stateEvents.js', 'stateEvents.js.map'].forEach(function(file) {
-      grunt.file.copy(builddir + "/es5/src/ng1/" + file, builddir + "/ng1/" + file);
+      grunt.file.copy(builddir + "/src/ng1/" + file, builddir + "/ng1/" + file);
     })
   });
 
@@ -234,9 +247,9 @@ module.exports = function (grunt) {
   function system(cmd) {
     grunt.log.write('% ' + cmd + '\n');
     return exec(cmd).then(function (result) {
-      grunt.log.write(result.stderr + result.stdout);
+      grunt.log.write('(success) ' + result.stderr + result.stdout + '\n');
     }, function (error) {
-      grunt.log.write(error.stderr + '\n');
+      grunt.log.write('(error) ' + error.stderr + '\n');
       throw new Error('Failed to run \'' + cmd + '\'');
     });
   }
